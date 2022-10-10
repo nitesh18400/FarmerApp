@@ -10,6 +10,9 @@ class Farmer(models.Model):
     state_name = models.CharField(max_length=50, blank=True, null=True)
     phone_number = models.CharField(max_length=50, blank=True, null=True)
 
+    def get_details(self):
+        return f"{self.name}_{self.village_name}_{self.district_name}_{self.state_name}_{self.phone_number}"
+
     def get_phone_number(self):
         return self.phone_number
 
@@ -24,6 +27,9 @@ class HindiFarmerDetails(models.Model):
     village_name = models.CharField(max_length=50, blank=True, null=True)
     district_name = models.CharField(max_length=50, blank=True, null=True)
     state_name = models.CharField(max_length=50, blank=True, null=True)
+
+    def get_details(self):
+        return f"{self.name}_{self.village_name}_{self.district_name}_{self.state_name}_{self.farmer.phone_number}"
 
     def get_phone_number(self):
         return self.farmer.phone_number
@@ -40,6 +46,9 @@ class MarathiFarmerDetails(models.Model):
     district_name = models.CharField(max_length=50, blank=True, null=True)
     state_name = models.CharField(max_length=50, blank=True, null=True)
 
+    def get_details(self):
+        return f"{self.name}_{self.village_name}_{self.district_name}_{self.state_name}_{self.farmer.phone_number}"
+
     def get_phone_number(self):
         return self.farmer.phone_number
 
@@ -55,6 +64,9 @@ class TeleguFarmerDetails(models.Model):
     district_name = models.CharField(max_length=50, blank=True, null=True)
     state_name = models.CharField(max_length=50, blank=True, null=True)
 
+    def get_details(self):
+        return f"{self.name}_{self.village_name}_{self.district_name}_{self.state_name}_{self.farmer.phone_number}"
+
     def get_phone_number(self):
         return self.farmer.phone_number
 
@@ -69,6 +81,9 @@ class PunjabiFarmerDetail(models.Model):
     village_name = models.CharField(max_length=50, blank=True, null=True)
     district_name = models.CharField(max_length=50, blank=True, null=True)
     state_name = models.CharField(max_length=50, blank=True, null=True)
+
+    def get_details(self):
+        return f"{self.name}_{self.village_name}_{self.district_name}_{self.state_name}_{self.farmer.phone_number}"
 
     def get_phone_number(self):
         return self.farmer.phone_number

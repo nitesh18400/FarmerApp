@@ -1,12 +1,11 @@
 import json
 import os
 
+import pandas as pd
+from FarmerApp.settings import GOOGLE_API_KEY
+from google.cloud import translate_v2 as translate
 from rest_framework import status
 
-import pandas as pd
-from google.cloud import translate_v2 as translate
-
-from FarmerApp.settings import GOOGLE_API_KEY
 from .models import Farmer, HindiFarmerDetails, MarathiFarmerDetails, TeleguFarmerDetails, PunjabiFarmerDetail
 
 lang_list = ["hi", "mr", "pa", "te"]
@@ -35,9 +34,15 @@ def translate_text(text, target_list):
     return result
 
 
-def save_farmer(request):
-    file_uploaded = request.FILES.get('file_uploaded')
-    df = pd.read_csv(file_uploaded)
+def save_farmer(file):
+    try:
+        df = pd.read_csv(file)
+        if list(df.columns) != ['phone_number', 'farmer_name', 'state_name', 'district_name', 'village_name']:
+            return {"status": False,
+                    "message": "Headers should be like ['phone_number', 'farmer_name', 'state_name', 'district_name', 'village_name']"}
+
+    except:
+        return {"status": False, "message": "Uploaded File is not Supported."}
 
     for _, farmer in df.iterrows():
         farmer_object = Farmer(name=farmer.farmer_name,
@@ -78,12 +83,12 @@ def save_farmer(request):
 def extract_info(request):
     if "lang" not in request.GET:
         return {"status": status.HTTP_400_BAD_REQUEST,
-                "message": "Please Enter Language Code {language_dict} as a GET Parameter --> url/info/?lang = language code"}
+                "message": f"Please Enter Language Code {language_dict} as a GET Parameter --> base_url/info/?lang = language code"}
 
     if "lang" in request.GET:
         if request.GET["lang"] not in language_dict.values():
             return {"status": status.HTTP_400_BAD_REQUEST,
-                    "message": f"Please Enter Valid Language Code {language_dict} as a GET Parameter --> url/info/?lang = language code"}
+                    "message": f"Please Enter Valid Language Code {language_dict} as a GET Parameter --> base_url/info/?lang = language code"}
         else:
             lang = request.GET["lang"]
 
