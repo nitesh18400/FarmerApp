@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block title %}User Created{% endblock %}
+{% block content %}
+<center>
+    <h1>User Creation Done</h1>
+    <p><a href="{{request.scheme}}://{{request.META.HTTP_HOST}}{% url 'login'%}">Go To Login Screen</a></p>
+</center>
+{% endblock %}

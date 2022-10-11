@@ -1,0 +1,29 @@
+<!-- templates/home.html -->
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+{% block content %}
+<center>
+    <h1>Welcome To Farmer Data Storage App</h1>
+
+    {% if user.is_authenticated %}
+      Hi {{ user.username }}!
+      <p>Want To Add Farmer Data! <a href="{% url 'upload-view-auth'%}">Click Here</a></p>
+      <br>
+      Want To See Farmer Data.
+        <p><a href="{{request.scheme}}://{{request.META.HTTP_HOST}}{% url 'info-view' 'en' %}">In English Language</a>&ensp;</p>
+        <p><a href="{{request.scheme}}://{{request.META.HTTP_HOST}}{% url 'info-view' 'hi' %}">In Hindi Language</a>&ensp;</p>
+        <p><a href="{{request.scheme}}://{{request.META.HTTP_HOST}}{% url 'info-view' 'mr' %}">In Marathi Language</a>&ensp;</p>
+        <p><a href="{{request.scheme}}://{{request.META.HTTP_HOST}}{% url 'info-view' 'te' %}">In Telegu Language</a>&ensp;</p>
+        <p><a href="{{request.scheme}}://{{request.META.HTTP_HOST}}{% url 'info-view' 'pa' %}">In Punjabi Language</a>&ensp;</p>
+      <br>
+      <p><a href="{% url 'logout' %}">Log Out</a></p>
+    {% else %}
+      <p>You are not logged in</p>
+      <a href="{% url 'login' %}">Log In</a> or <a href="{%url 'create-user'%}">Create New User</a>
+    {% endif %}
+
+
+</center>
+
+{% endblock %}

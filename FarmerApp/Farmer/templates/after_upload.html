@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Uploaded{% endblock %}
+{% block content %}
+<center>
+    <h1>{{message}}</h1>
+    You Can See All Farmer Data Here.
+    <p><a href="{{request.scheme}}://{{request.META.HTTP_HOST}}{% url 'info-view-auth' 'en' %}">In English Language</a>&ensp;</p>
+    <p><a href="{{request.scheme}}://{{request.META.HTTP_HOST}}{% url 'info-view-auth' 'hi' %}">In Hindi Language</a>&ensp;</p>
+    <p><a href="{{request.scheme}}://{{request.META.HTTP_HOST}}{% url 'info-view-auth' 'mr' %}">In Marathi Language</a>&ensp;</p>
+    <p><a href="{{request.scheme}}://{{request.META.HTTP_HOST}}{% url 'info-view-auth' 'te' %}">In Telegu Language</a>&ensp;</p>
+    <p><a href="{{request.scheme}}://{{request.META.HTTP_HOST}}{% url 'info-view-auth' 'pa' %}">In Punjabi Language</a>&ensp;</p>
+    <br>
+    <p><a href="{{request.scheme}}://{{request.META.HTTP_HOST}}{% url 'upload-view'%}">Back To Upload File Page</a></p>
+    <br>
+    <p><a href="{{request.scheme}}://{{request.META.HTTP_HOST}}">Back To Home</a></p>
+</center>
+{% endblock %}
