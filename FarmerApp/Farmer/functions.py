@@ -17,6 +17,15 @@ language_dict = {
     "English": "en",
 }
 
+code_to_lang = {
+    "hi": "Hindi",
+    "mr": "Marathi",
+    "pa": "Punjabi",
+    "te": "Telugu",
+    "en": "English",
+
+}
+
 
 def translate_text(text, target_list):
     json.dump(GOOGLE_API_KEY, open("key.json", 'w'))

@@ -48,11 +48,11 @@ class FarmerApiTestCase(TestCase):
         assert response.status_code == 200
 
     def test_info_access_with_auth_without_token(self):
-        response = self.client.get("/info_auth/?lang")
+        response = self.client.get("/info-auth/?lang")
         assert response.status_code == 401
 
     def test_upload_access_with_auth_without_token(self):
-        response = self.client.get("/upload_auth/")
+        response = self.client.get("/upload-auth/")
         assert response.status_code == 401
 
 
@@ -76,9 +76,9 @@ class FarmerApiAuthTestCase(APITestCase):
         response = self.client.post("/token-auth/", {'username': 'test', 'password': 'test'}, format='json')
 
         self.client.credentials(HTTP_AUTHORIZATION=f"Token {response.json()['token']}")
-        response1 = self.client.get("/info_auth/?lang=en")
-        response2 = self.client.get("/info_auth/?lang=er")
-        response3 = self.client.get("/info_auth/")
+        response1 = self.client.get("/info-auth/?lang=en")
+        response2 = self.client.get("/info-auth/?lang=er")
+        response3 = self.client.get("/info-auth/")
 
         assert response1.status_code == 200
         assert response2.status_code == 400
@@ -98,7 +98,7 @@ class FarmerApiAuthTestCase(APITestCase):
         data = open('test.csv', "rb")
         file = SimpleUploadedFile(content=data.read(), name=data.name, content_type='multipart/form-data')
 
-        response = self.client.post("/upload_auth/", {"file_uploaded": file}, format="multipart")
+        response = self.client.post("/upload-auth/", {"file_uploaded": file}, format="multipart")
         file.close()
 
         assert response.status_code == 200

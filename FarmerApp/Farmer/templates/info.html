@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}Farmer's Details{% endblock %}
+{% block content %}
+
+<center>
+    <h1>Farmers Data In {{lang}} Language</h1>
+
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Village</th>
+            <th>District</th>
+            <th>State</th>
+            <th>Phone Number</th>
+
+        </tr>
+        {% for farmer_data in farmer_data_list.message %}
+            <tr>
+                <th>{{farmer_data.name}}</th>
+                <th>{{farmer_data.village_name}}</th>
+                <th>{{farmer_data.district_name}}</th>
+                <th>{{farmer_data.state_name}}</th>
+                <th>{{farmer_data.phone_number}}</th>
+
+            </tr>
+        {% endfor %}
+
+    </table>
+</center>
+
+
+
+
+
+{% endblock %}
+<style>
+    table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+</style>
