@@ -8,7 +8,7 @@ class Farmer(models.Model):
     village_name = models.CharField(max_length=50, blank=True, null=True)
     district_name = models.CharField(max_length=50, blank=True, null=True)
     state_name = models.CharField(max_length=50, blank=True, null=True)
-    phone_number = models.CharField(max_length=50, blank=True, null=True)
+    phone_number = models.CharField(max_length=15, blank=True, null=True)
 
     def get_details(self):
         return f"{self.name}_{self.village_name}_{self.district_name}_{self.state_name}_{self.phone_number}"
