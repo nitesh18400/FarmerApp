@@ -7,6 +7,7 @@
     <h1>User Creation Form </h1>
     <form method="post">
         {% csrf_token %}
+        {{message}}
         <div class="group">
             <label for="{{ form.username.id_for_label }}" class="label">Username</label>
             <input id="{{ form.username.id_for_label }}" maxlength="100" name="username" type="text" class="input">
