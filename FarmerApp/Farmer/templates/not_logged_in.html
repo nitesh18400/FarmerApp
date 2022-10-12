@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}Not Logged In{% endblock %}
+{% block content %}
+<center>
+    <h1>You have to log in before Accessing This Page</h1>
+    <a href="{% url 'login' %}">Log In</a> or <a href="{%url 'create-user-view'%}">Create New User</a>
+
+</center>
+
+{% endblock %}
