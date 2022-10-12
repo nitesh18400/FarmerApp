@@ -47,8 +47,14 @@ different languages.
    "GOOGLE_API_KEY": {},
    "DJANGO_SECRET_KEY": ""
    ```
+ - Database setup
+   ```bash
+    python3 manage.py makemigrations
+    python3 manage.py migrate
+   ```
+
  - Run the command.
-   ```bash 
+   ```bash
     python3 manage.py runserver
    ```
  - The site should be live at base url - ```127.0.0.1:8000```.
